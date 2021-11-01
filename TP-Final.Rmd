@@ -1,0 +1,54 @@
+---
+title: "Untitled"
+author: "Carli"
+date: "11/1/2021"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+
+```{r cars}
+library(knitr)
+library(ggplot2)
+library(magrittr)
+library(nortest)
+library(car)
+library(MASS)
+library(multcompView)
+suppressPackageStartupMessages(library(DescTools))
+suppressPackageStartupMessages(library(epiR))
+library(gmodels)
+library(samplesizeCMH)
+library(oddsratio)
+library(survival)
+library(epiR)
+library(dplyr)
+library(pROC)
+setwd('C:/Users/User/Desktop/Bioestadística/Final')
+island_data <- read.csv2('Islander_data.csv', sep = ",")
+# Muestro el tipo de datos en tabla
+tab = data.frame(Variable = names(island_data), Tipo = sapply(island_data, class), row.names = NULL)
+kable(tab)
+```
+
+Corregimos los tipos de dato de las variables
+
+```{r 1}
+island_data$Happy_Sad_group <- as.factor(island_data$Happy_Sad_group)
+island_data$Dosage <- as.factor(island_data$Dosage)
+island_data$Drug <- as.factor(island_data$Drug)
+island_data$Mem_Score_Before <- as.numeric(island_data$Mem_Score_Before)
+island_data$Mem_Score_After <- as.numeric(island_data$Mem_Score_After)
+island_data$Diff<- as.numeric(island_data$Diff)
+# Muestro el tipo de datos en tabla
+tab = data.frame(Variable = names(island_data), Tipo = sapply(island_data, class), row.names = NULL)
+kable(tab)
+summary(island_data)
+```
+
+
